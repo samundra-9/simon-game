@@ -1,6 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import ColorGrid from "./components/ColorGrid";
 import GameControls from "./components/GameControls";
+import HowToPlay from "./components/HowToPlay";
 import { Color } from "./constants/game";
 import { useGameLogic } from "./hooks/useGameLogic";
 import { playColorSound, playSuccess, playError } from "./hooks/useSounds";
@@ -22,6 +23,8 @@ const playColorVisual = (color: Color): Promise<void> => {
 };
 
 export default function App() {
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
+
   const {
     sequence,
     isUserTurn,
@@ -40,15 +43,20 @@ export default function App() {
   const disabled = gameOver || !isUserTurn || isPlaying;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white relative">
       <GameControls
         onStartGame={startGame}
         score={score}
         gameOver={gameOver}
+        onHowToPlay={() => setShowHowToPlay(true)}
       />
       <ColorGrid
         onColorClick={onColorClick}
         disabled={disabled}
+      />
+      <HowToPlay 
+        isOpen={showHowToPlay} 
+        onClose={() => setShowHowToPlay(false)}
       />
     </div>
   );
