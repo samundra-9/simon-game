@@ -1,5 +1,4 @@
-import React, { FC, useEffect } from "react";
-import { COLORS } from "../constants/game";
+import { FC, useEffect } from "react";
 
 interface HowToPlayProps {
   isOpen: boolean;

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import ColorGrid from "./components/ColorGrid";
 import GameControls from "./components/GameControls";
 import HowToPlay from "./components/HowToPlay";
@@ -26,7 +26,6 @@ export default function App() {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const {
-    sequence,
     isUserTurn,
     score,
     gameOver,
